@@ -1,52 +1,80 @@
-openapi: 3.0.3
+openapi: 3.1.0
 info:
-  title: Java API Exercise - Core Criteria
-  description: |-
-  version: 0.2.2
+  title: Java API Requests and Responses Workshop - Core Criteria
+  description: Core API for the Requests and Responses workshop with no errors in this file
+  version: 0.0.4
+  contact:
+    name: Responses and Requests
 
 servers:
   - url: http://localhost:4000
 tags:
-  - name: examples
+  - name: authors
 paths:
-  /examples:
+  /authors:
     post:
       tags:
-        - examples
-      summary: Example POST route
-      description: Description of an example POST route
+        - authors
+      operationId: authorsPost
+      summary: Route to use (with a payload) when creating a new author
+      description: New author creation
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateExample'
+              $ref: '#/components/schemas/CreateAuthor'
       responses:
-        201:
+        '201':
+          description: Author created
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Example'
+                $ref: '#/components/schemas/Author'
     get:
       tags:
-        - examples
-      summary: Example GET route
-      description: Description of an example GET route
+        - authors
+      summary: Plain GET to access the whole list
+      description: Get all of the listed authors
+      operationId: getAuthors
       responses:
-        200:
+        '200':
+          description: Get all authors
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AllExamples'
-  /examples/{id}:
-    put:
-      tags:
-        - examples
-      summary: Example PUT route
-      description: Description of an example PUT route
+                $ref: '#/components/schemas/AllAuthors'
+  /authors/{id}:
+    get:
       parameters:
         - name: id
           in: path
-          description: The ID of the example to update
+          description: Id of the author
+          required: true
+          schema:
+            type: integer
+      tags:
+        - authors
+      summary: Get a specific author using their ID
+      description: Get one author from the list
+      operationId: getSpecificAuthor
+      responses:
+        '200':
+          description: Get a single author
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Author'
+
+    put:
+      tags:
+        - authors
+      summary: Update an existing author
+      description: use the ID of an author to update them using the payload
+      operationId: updateAuthor
+      parameters:
+        - name: id
+          in: path
+          description: The ID of the author to update
           required: true
           schema:
             type: integer
@@ -54,63 +82,60 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateExample'
+              $ref: '#/components/schemas/CreateAuthor'
       responses:
-        201:
+        '201':
+          description: Author successfully updated
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Example'
+                $ref: '#/components/schemas/Author'
     delete:
       tags:
-        - examples
-      summary: Example DELETE route
-      description: Description of an example DELETE route
+        - authors
+      summary: Delete an author using the ID
+      description: Delete an author using their ID
+      operationId: deleteAuthor
       parameters:
         - name: id
           in: path
-          description: The ID of the example to delete
+          description: The ID of the author to delete
           required: true
           schema:
             type: integer
       responses:
-        200:
+        '200':
+          description: Successfully deleted the Author
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Example'
+                $ref: '#/components/schemas/Author'
 
 components:
   schemas:
-    CreateExample:
+    CreateAuthor:
       type: object
-      required: [propertyOne, propertyTwo]
+      required: [name, email]
       properties:
-        propertyOne:
+        name:
           type: string
-          example: "Example Value"
-        propertyTwo:
-          type: email
-          format: email
-          example: "example@email.value"
-    Example:
+          example: "JRR Tolkien"
+        email:
+          type: string
+          example: "jrr@tolkien.com"
+    Author:
       type: object
       properties:
         id:
           type: integer
           example: 1
-        propertyOne:
+        name:
           type: string
-          example: "Example Value"
-        propertyTwo:
+          example: "JRR Tolkien"
+        email:
           type: string
-          example: "example@email.value"
-        createdAt:
-          type: string
-          format: DateTime
-          pattern: YYYY-MM-DDTHH:MM:SS
-          example: 2023-03-14T11:01:56.633+00:00
-    AllExamples:
+          example: "jrr@tolkien.com"
+    AllAuthors:
       type: array
       items:
-        $ref: '#/components/schemas/Example'
+        $ref: '#/components/schemas/Author'
