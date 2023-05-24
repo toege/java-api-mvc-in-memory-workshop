@@ -1,10 +1,10 @@
 openapi: 3.1.0
 info:
-  title: Java API Requests and Responses Workshop - Core Criteria
-  description: Core API for the Requests and Responses workshop with no errors in this file
+  title: Java API MVC in Memory Workshop - Core Criteria
+  description: Core API for the MVC in Memory Workshop
   version: 0.0.4
   contact:
-    name: Responses and Requests
+    name: MVC in Memory
 
 servers:
   - url: http://localhost:4000
