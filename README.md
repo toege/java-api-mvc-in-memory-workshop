@@ -12,7 +12,7 @@ To remedy this, we often organise our code into their own packages. This is anot
 One common technique is named "Model, View, Controller". This involves separating our code into "layers".
 
 ### Model
-This is our data layer. It describes what data looks like (e.g. Users, Cars, Products) and often contains something we call a "Repository" - a class that's responsible for creating and retrieving models. For now this is where out ArrayList of Students might live in yesterday's exercise, the Student class is also associated with this location.
+This is our data layer. It describes what data looks like (e.g. Users, Cars, Products) and often contains something we call a "Repository" - a class that's responsible for creating and retrieving models. For now this is where out ArrayList of Authors might live in yesterday's exercise, the Author class is also associated with this location.
 
 ### View
 This is what the client interacts with. It could be a HTML page, a terminal output or a JSON response from a RESTful API. With API's, the view (JSON) is a representation of a data model. In our examples yesterday the View is what we see in Insomnia or the browser when the request has completed.
