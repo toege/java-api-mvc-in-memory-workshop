@@ -115,8 +115,11 @@ components:
   schemas:
     CreateAuthor:
       type: object
-      required: [name, email]
+      required: [id, name, email]
       properties:
+        id:
+          type: integer
+          example: 0
         name:
           type: string
           example: "JRR Tolkien"
