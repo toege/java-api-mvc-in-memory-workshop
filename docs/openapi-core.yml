@@ -15,7 +15,7 @@ paths:
     post:
       tags:
         - authors
-      operationId: authorsPost
+      operationId: createAuthors
       summary: Route to use (with a payload) when creating a new author
       description: New author creation
       requestBody:
